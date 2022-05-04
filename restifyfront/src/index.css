@@ -1,0 +1,1332 @@
+/*----------------------------------------------------
+---------------GENERAL---------------*/
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700;800&display=swap');
+
+body { 
+    height: 100%; 
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+html { 
+    height: 100%; 
+    width: 100%;
+    overflow: auto; 
+    /*overflow-x: hidden;*/
+}
+
+body {
+    font-family: 'Assistant', sans-serif;
+    color: black;
+    background-color: rgb(255, 255, 255);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.content-after-navbar {
+    padding-top: 55px;  /*HEIGHT OF NAVBAR*/
+}
+
+.background-wrapper {
+    z-index: -1;
+    width: 105%;
+    height: 105%;
+    overflow: hidden;
+    position: fixed;
+    top: -5px;
+    left: -5px;
+}
+
+.background-wrapper>img {
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    filter: blur(2px);
+}
+
+.error-message {
+    color: red;
+    font-size: 0.95rem;
+    margin: 0px;
+    padding: 0px;
+}
+
+hr {
+    padding: 0 auto;
+    margin: 0 auto;
+}
+
+/*-------------END GENERAL-------------
+----------------------------------------------------*/
+
+/*----------------------------------------------------
+---------------HEADER BAR---------------*/
+.navbar-dark {
+    background-color: black !important;
+    color: white !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    opacity: 1;
+    color:rgb(255, 255, 255, 1)
+}
+
+.site-logo {
+    width: 50px;
+    height: 50px;
+    margin-top: -10px;
+}
+
+.navbar-brand {
+    text-transform: uppercase;
+    font-size: 40px;
+}
+
+.nav-link {
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.nav-link:hover {
+    color: #3e891d !important;
+}
+
+.dropdown-item.active {
+    background-color: #3e891d !important;
+    color: rgb(204, 204, 204) !important;
+}
+
+.dropdown-item {
+    background-color: #231709;
+    color: rgb(204, 204, 204);
+    width: 100%;
+    padding: .75em;
+    margin: 0;
+}
+
+.dropdown-item:hover {
+    color: #3e891d;
+    background-color: #231709;
+}
+
+.dropdown-menu {
+    background-color: #231709;
+    color: rgb(204, 204, 204);
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+}
+
+/*---profile dropdown---*/
+.avatar {
+    width: 150px;
+    margin: auto;
+}
+
+.profile-menu {
+    width: 275px;
+}
+
+.profile-menu-container {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    width: 250px;
+}
+
+.edit-link i {
+    font-size: large;
+}
+
+.edit-link {
+    color: rgb(204, 204, 204);
+    text-decoration: none;
+}
+
+.edit-link:hover {
+    color: #3e891d;
+    text-decoration: underline;
+}
+/*---profile dropdown end---*/
+
+/*---notifications dropdown---*/
+.notifications.dropdown-menu {
+    width: 300px;
+    max-width: 300px;
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.notifications.dropdown-menu .title{
+    font-size: .9rem;
+}
+
+.notifications.dropdown-menu a {
+    color: rgb(204, 204, 204);
+    text-decoration: none;
+}
+
+.notification-image-wrapper {
+    width: 45px;
+    height: 45px;
+    overflow: hidden;
+    margin-left: .7rem;
+    margin-right: .7rem;
+}
+
+.notifications.dropdown-menu img {
+    object-fit: cover;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.notifications.dropdown-menu .text .user {
+    font-size: 1.1rem;
+}
+
+.notifications.dropdown-menu .text .message {
+    font-size: 0.85rem;
+}
+
+.notifications.dropdown-menu .text .date {
+    font-size: 0.8rem;
+    color: #6c6c6c;
+}
+
+.notifications .nav-btn {
+    background-color: #3d891d82;
+    border-radius: 0%;
+    border-color: #231709;
+}
+
+.notifications .nav-btn:hover {
+    background-color: #3e891d;
+}
+/*---notifications end---*/
+
+.not-logged-in {
+    color: white;
+    text-decoration: underline;
+    font-size: 1em;
+}
+
+.not-logged-in:hover {
+    color: white;
+    text-decoration: none;
+}
+/*----------HEADER BAR END
+-----------------------------------------------*/
+
+
+/*-----------------------------------------------
+----------NAV TABS ABOVE RESTAURANT*/
+.nav-pills {
+    background-color: transparent;
+    margin: 2% auto;
+    padding-top: 30px;
+}
+
+.nav-pills .nav-link {
+    color: #3e891d;
+    background-color: rgb(255, 255, 255, .5);
+    box-shadow: 0 0 2px 1.5px #3e891d;
+    width: 3em;
+    margin: auto 5%;
+}
+
+.nav-pills .nav-link:hover {
+    background-color: rgb(255, 255, 255, .75);
+    border-color: transparent;
+    color: #3e891d;
+}
+
+.nav-pills .nav-link.active {
+    background-color: rgb(255, 255, 255, .75);
+    border-color: transparent;
+    color: #3e891d;
+}
+
+.nav-pills .start-tab {
+    margin-left: 15%;
+}
+
+.nav-pills .end-tab {
+    margin-right: 15%;
+}
+/*----------NAV TABS ABOVE RESTAURANT END
+-----------------------------------------------*/
+
+
+/*----------------------------------------------------
+---------------EDIT BLOG POST---------------*/
+.edit-container {
+    margin: auto 10%;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 1px;
+}
+
+.edit-form {
+    border-top: 2px solid #3e891d;
+    border-bottom: 2px solid #3e891d;
+}
+
+.form-control,
+.btn {
+    border-radius: 3px;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 3px #3c693c;
+    border-color: #56ad56;
+}
+
+.images-container {
+    border: 2px solid #3e891d;
+    border-radius: 2px;
+    background-color: rgb(248, 248, 248);
+}
+
+.blank-file {
+    position: relative;
+    opacity: .8;
+}
+
+.upload-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.image-header-wrapper {
+    width: 400px;
+    height: 150px;
+    overflow: hidden;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.edit-container img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.custom-file-upload:hover {
+    cursor: pointer;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+form .input-group {
+    margin-bottom: 20px;
+}
+
+.edit-item-box {
+    border: 1px solid #3e891d;
+    border-radius: 2px;
+    margin-bottom: 2rem;
+}
+
+textarea {
+    white-space: pre-wrap;
+}
+
+textarea.stop-setting-height-for-others {
+    min-height: 30em;
+}
+/*-------------END EDIT BLOG POST-------------
+----------------------------------------------------*/
+
+
+/*----------------------------------------------------
+---------------FEED---------------*/
+.feed {
+    padding-top: 10px;
+}
+
+.blog-section {
+    margin: auto 5%;
+}
+
+.single-blog {
+    background-color: white;
+    border-radius: 2px;
+    margin: 1rem;
+    height: calc(100% - 2em);
+    position: relative;
+}
+
+.card-link {
+    text-decoration: none;
+    color: black;
+    display: block;
+}
+
+.card-link:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.blog-img-container {
+    margin-bottom: 0.4rem;
+    height: 250px;
+}
+
+.blog-img-container>img {
+    height: 250px;
+    min-width: 100%;
+    object-fit: cover;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+
+.blog-details {
+    margin-bottom: 0.4rem;
+    font-size: .9em;
+    color: #646464;
+}
+
+.restaurant-link {
+    text-decoration: none;
+    color: #646464;
+}
+
+.restaurant-link:hover {
+    text-decoration: underline;
+    color: #646464;
+}
+
+.blog-content {
+    margin-top: 0.5em;
+    margin-bottom: 2.5em;
+    word-wrap: break-word;
+}
+
+.read-btn {
+    color: white;
+    border: 1px solid #3e891d;
+    border-radius: 2px;
+    background-color: #3e891d;
+    padding: 0.25rem;
+    text-transform: uppercase;
+    font-size: .85em;
+    text-decoration: none;
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
+}
+
+.read-btn:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.pagination-number a {
+    color: #3e891d;
+    margin: auto 0.25rem;
+    font-size: 1.2em;
+}
+
+.pagination-number a:hover {
+    color: #3e891d;
+    text-decoration: none;
+}
+/*-------------END FEED-------------
+----------------------------------------------------*/
+
+
+/*----------------------------------------------------
+---------------GENERAL/RESTAURANT INFO---------------*/
+.general-like-button {
+    color: #DB355B;
+    border: none;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+}
+
+/*---LIKE BUTTON---*/
+.general-like-button:focus {
+    color: #DB355B;
+    border: none;
+    box-shadow: none;
+}
+
+.general-like-button:hover {
+    color: #DB355B;
+    cursor: pointer;
+}
+
+.general-like-text {
+    color: #DB355B;
+    font-size: 1.2rem;
+}
+/*---LIKE BUTTON END---*/
+
+/*---FOLLOW BUTTON---*/
+.follow-button {
+    color: #00B5C8;
+    border: none;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+}
+
+.follow-button :focus {
+    color: #00B5C8;
+    border: none;
+    box-shadow: none;
+}
+
+.follow-button:hover {
+    color: #00B5C8;
+    cursor: pointer;
+}
+
+.follow-text {
+    color: #00B5C8;
+    font-size: 1.2rem;
+}
+/*---FOLLOW BUTTON END---*/
+/*----------------------------------------------------
+---------------GENERAL/RESTAURANT INFO---------------*/
+
+
+/*----------------------------------------------------
+---------------HOME/SEARCH---------------*/
+.search-page-container {
+    padding-top: 65px;
+}
+
+.home-container {
+    margin: auto 10%;
+}
+
+.search-by-container {
+    color: white;
+}
+
+.search-form {
+    margin-bottom: 4rem;
+    margin: auto 5%;
+}
+
+.search-card-container {
+    background-color: white;
+    border-radius: 2px;
+    width: 75%;
+}
+
+.search-card-wrapper {
+    color: black;
+    text-decoration: none;
+}
+
+.search-card-wrapper:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.search-card {
+    border-radius: 2px;
+    background-color: white;
+    width: 85%;
+    margin: 2rem;
+}
+
+.logo {
+    overflow: hidden;
+}
+
+.logo a>img {
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+.search-card-title {
+    font-size: 2.7rem;
+}
+
+.likes {
+    color: #DB355B;
+}
+
+.read-btn-home {
+    color: white;
+    border: 1px solid #3e891d;
+    border-radius: 2px;
+    background-color: #3e891d;
+    padding: 0.25rem 0.5rem;
+    text-transform: uppercase;
+    font-size: .85em;
+    text-decoration: none;
+    margin-top: 4rem;
+}
+
+.read-btn-home:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.blog-pagination {
+    margin: auto 20%;
+}
+
+span.page-btn {
+    color: rgba(255, 255, 255, 0.854);
+    margin: auto 0.25rem;
+    font-size: 1.2em;
+    text-decoration: underline;
+}
+
+span.page-btn:hover {
+    color: #3e891d;
+    text-decoration: none;
+    cursor: pointer;
+}
+/*-------------END HOME/SEARCH-------------
+----------------------------------------------------*/
+
+
+/*----------------------------------------------------
+---------------LOGIN---------------*/
+.login-background-wrapper {
+    z-index: -1;
+    width: 105%;
+    height: 105%;
+    overflow: hidden;
+    position: fixed;
+    top: -5px;
+    right: -5px;
+}
+
+.login-background-wrapper>img {
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.login-form {
+    padding-top: 30px;
+}
+
+/*icons start*/
+.login-form .input-group-addon {
+    max-width: 42px;
+}
+
+.login-form .fa {
+    font-size: 21px;
+    color: #636363;
+}
+
+.login-form .fa-paper-plane {
+    font-size: 15px;
+}
+
+.login-form .fa-check {
+    color: #fff;
+    left: 17px;
+    top: 19px;
+    font-size: 7px;
+    position: absolute;
+}
+/*icons end*/
+
+.form-control {
+    height: 40px;
+    box-shadow: none;
+    color: #969fa4;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 3px #3c693c;
+    border-color: #56ad56;
+}
+
+.form-control,
+.btn {
+    border-radius: 3px;
+}
+
+.login-form {
+    width: 400px;
+    margin: 0 auto;
+    padding-top: 10%;
+}
+
+.left-col {
+    padding-right: 5px;
+}
+
+.login-form h2 {
+    color: #636363;
+    margin: 0 0 15px;
+    position: relative;
+    font-weight: 500;
+}
+
+.login-form h2:before,
+.login-form h2:after {
+    content: "";
+    height: 1.5px;
+    width: 30%;
+    background: #d4d4d4;
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+}
+
+.login-form h2:before {
+    left: 0;
+}
+
+.login-form h2:after {
+    right: 0;
+}
+
+.login-form .hint-text {
+    color: #999;
+    margin-bottom: 30px;
+}
+
+.login-form form {
+    color: #999;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    background: #f2f3f7;
+    box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+
+.login-form .input-group {
+    margin-bottom: 20px;
+}
+
+.login-form .forgot-password a{
+    text-align: right;
+    color: #999;
+    font-size: 0.9em;
+}
+
+.login-form .btn {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.login-form .btn.btn-success {
+    color: white;
+    text-decoration: none;
+}
+
+.redirect-link {
+    font-size: 0.95em;
+    color: white;
+}
+
+.redirect-link a{
+    color: #fff;
+}
+
+.login-form a {
+    text-decoration: underline;
+}
+
+.login-form a:hover {
+    text-decoration: none;
+}
+/*-------------END LOGIN-------------
+----------------------------------------------------*/
+
+
+/*----------------------------------------------------
+---------------REGISTER---------------*/
+.signup-form {
+    width: 800px;
+    margin: 0 auto;
+    padding-top: 30px;
+}
+
+/*avatar*/
+/*.custom-file-upload:hover {
+    cursor: pointer;
+}*/
+
+.profile-signup-image-button {
+    width: 260px;
+    margin: auto;
+    padding-top: 10px;
+}
+/*avatar end*/
+
+/*icons start*/
+.signup-form .input-group-addon {
+    max-width: 42px;
+}
+
+.signup-form .fa {
+    font-size: 21px;
+    color: #636363;
+}
+
+.signup-form .fa-paper-plane {
+    font-size: 15px;
+}
+
+.signup-form .fa-check {
+    color: #fff;
+    left: 17px;
+    top: 19px;
+    font-size: 7px;
+    position: absolute;
+}
+/*icons end*/
+
+.form-control {
+    height: 40px;
+    box-shadow: none;
+    color: #969fa4;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 3px #3c693c;
+    border-color: #56ad56;
+}
+
+.form-control,
+.submit-button {
+    border-radius: 3px;
+}
+
+.left-col {
+    padding-right: 5px;
+}
+
+.signup-form h2 {
+    color: #636363;
+    margin: 0 0 15px;
+    position: relative;
+    font-weight: 500;
+}
+
+.signup-form h2:before,
+.signup-form h2:after {
+    content: "";
+    height: 1.5px;
+    width: 35%;
+    background: #d4d4d4;
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+}
+
+.signup-form h2:before {
+    left: 0;
+}
+
+.signup-form h2:after {
+    right: 0;
+}
+
+.signup-form .hint-text {
+    color: #999;
+    font-size: 0.95em;
+    margin-bottom: 30px;
+}
+
+.signup-form form {
+    color: #999;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    background: #f2f3f7;
+    box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+
+.signup-form .input-group {
+    margin-bottom: 20px;
+}
+
+.btn-secondary-outline {
+    border-color: #999;
+    color: rgb(83, 83, 83);
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.signup-form .submit-button {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.redirect-link {
+    font-size: 0.95em;
+}
+
+.signup-form a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.signup-form a:hover {
+    text-decoration: none;
+}
+/*-------------END REGISTER-------------
+----------------------------------------------------*/
+
+
+/*----------------------------------------------------
+---------------RESTAURANT---------------*/
+/*-----------------------------------------------
+----------RESTAURANT INFO*/
+.general-info {
+    position: relative;
+}
+
+.page-edit-link {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: #646464;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.page-edit-link:hover {
+    color: #3e891d;
+    text-decoration: underline;
+}
+
+.page-edit-link-start{
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    color: #646464;
+    font-size: 1.2rem;
+}
+
+.main-container {
+    margin-left: 5%;
+    margin-right: 5%;
+    min-height: 73vh;
+}
+
+.main-row {
+    min-height: 73vh;
+}
+
+
+/*-------------------------------------
+----------CAROUSEL*/
+#myCarousel {
+    height: 73vh;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    z-index: 10;
+}
+
+/* center the image and set max height or width */
+.carousel-image {
+    z-index: 5;
+    max-height: 73vh;
+    max-width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.carousel-image>img {
+    z-index: 5;
+    max-height: 70vh;
+    max-width: 96%;
+}
+
+.carousel-item .image-wrapper {
+    width: 100%;
+    height: 73vh;
+    overflow: hidden
+}
+
+.carousel-item .image-wrapper>img {
+    width: 105%;
+    height: 105%;
+    margin: -7px;
+    filter: blur(5px);
+}
+/*----------CAROUSEL END
+-------------------------------------*/
+
+.general-info {
+    height: 73vh;
+    overflow: auto;
+}
+
+.restaurant-name {
+    font-size: 2.8em;
+    text-transform: uppercase;
+}
+
+.divider-line {
+    border-top: 2px solid #3e891d;
+    text-align: center;
+    opacity: 1;
+    width: 80%;
+    margin: auto auto;
+}
+
+.followers,
+.likes {
+    font-size: 1.1em;
+    color: black;
+    padding: 0;
+    margin: 0;
+}
+
+.restaurant-logo>img {
+    width: 140px;
+}
+/*----------RESTAURANT INFO END
+-----------------------------------------------*/
+
+
+/*-----------------------------------------------
+----------RESTAURANT MENU*/
+.featurette {
+    position: relative;
+    width: 80%;
+    margin: auto;
+}
+
+.featurette .page-edit-link {
+    top: 9px;
+    left: 5px;
+    color: #b8b8b8;
+}
+
+.menu-cards-container {
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+.card-text-box {
+    margin: 2em auto;
+    width: 85%;
+}
+
+.featurette-divider {
+    margin: 5rem 10%;
+    opacity: 0.5;
+}
+
+.row.featurette {
+    background-color: black;
+    color: white;
+}
+
+.row.featurette .col-md-7 {
+    background: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.menu-image {
+    overflow: hidden;
+}
+
+.menu-image>img {
+    object-fit: cover
+}
+
+/* heading lines: https://www.trysmudford.com/blog/css-header-legend/*/
+.featurette-heading {
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    padding-bottom: 1rem;
+    display: grid;
+    grid-template-columns: minmax(20px, 1fr) auto minmax(20px, 1fr);
+    align-items: center;
+    text-align: center;
+    grid-gap: 20px;
+    width: 100%;
+}
+
+.featurette-heading::before,
+.featurette-heading::after {
+    content: '';
+    border-top: 2px solid;
+}
+
+.featurette-heading:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+.featurette-heading:after {
+    left: 100%;
+    margin-left: 15px;
+}
+
+.food-name {
+    font-size: x-large;
+    text-transform: uppercase;
+}
+
+.sub-item {
+    font-size: 1.1em;
+}
+
+.sub-item-description {
+    margin-left: 60px;
+}
+
+hr.menu-divider {
+    border-top: 1px solid white;
+    opacity: 1;
+    margin: 1em auto;
+    text-align: center;
+}
+/*----------RESTAURANT MENU END
+-----------------------------------------------*/
+
+
+/*-----------------------------------------------
+----------RESTAURANT BLOG*/
+.create-blog {
+    background: rgb(97, 97, 97);
+    object-fit: cover;
+    font-size: 2.5rem;
+    color: white;
+    height: 250px;
+    opacity: .65;
+}
+/*----------RESTAURANT BLOG END
+-----------------------------------------------*/
+
+
+/*-----------------------------------------------
+----------RESTAURANT COMMENTS*/
+.comment-image {
+    max-height: calc(100vh - 185px);
+    background: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.comment-image>img {
+    max-height: calc(100vh - 185px);
+    overflow: hidden;
+}
+
+.comment-card {
+    max-height: calc(100vh - 185px);
+    height: calc(100vh - 185px);
+    background-color: black;
+    background: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    text-align: center;
+    overflow-y: scroll;
+}
+
+.comment-divider {
+    margin-top: 2px solid white;
+    width: 80%;
+    text-align: center;
+    margin: auto;
+}
+
+textarea,
+.comment-form .btn {
+    border-radius: 2px;
+}
+
+textarea {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input,
+textarea {
+    outline: none !important;
+    border-color: #3e891d;
+}
+
+.input:focus,
+textarea:focus {
+    outline: none !important;
+    box-shadow: 0 0 2px 2px #3e891d;
+    border-color: #3e891d;
+}
+
+.comment-form .btn {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background-color: #3e891d;
+}
+
+.comment-card .title {
+    font-size: 1.7em;
+    margin: 1rem auto;
+}
+
+.comment-card .name {
+    font-size: large;
+    margin-bottom: 1rem;
+}
+/*----------RESTAURANT COMMENTS END
+-----------------------------------------------*/
+
+.delete-file {
+    position: relative;
+    opacity: .8;
+}
+
+.delete-file:hover {
+    opacity: 1;
+}
+
+.delete-file:hover .delete-message {
+    opacity: 1;
+}
+
+.delete-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: red;
+    background-color: white;
+    box-shadow: 0 0 3px 3px white;
+    padding-left: 5px;
+    padding-right: 5px;
+    opacity: .7;
+}
+/*-------------END RESTAURANT-------------
+----------------------------------------------------*/
+
+
+/*----------------------------------------------------
+---------------SINGLE BLOG POST---------------*/
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
+.header-image {
+    position: relative;
+}
+
+.header-image>img {
+    height: calc(100vh - 86px);
+    object-fit: cover;
+}
+
+.header-image .header-text {
+    color: white;
+    position: absolute;
+    width: 47%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.header-text .title {
+    font-size: 4.4rem;
+    font-weight: 800;
+    line-height: 4.8rem;
+}
+
+.header-text .sub-title {
+    font-size: 2.2rem;
+    line-height: 2.5rem;
+    font-weight: 500;
+}
+
+.header-text .info {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    font-style: italic;
+    font-weight: 300;
+}
+
+.single-blog-post {
+    margin: auto 25%;
+    font-family: 'Lora', serif;
+    font-size: 1.2em;
+    position: relative;
+}
+
+.single-blog-post>h2 {
+    font-weight: 600;
+}
+
+a:hover {
+    color: #3e891d;
+    text-decoration: none;
+}
+
+span.single-page-btn {
+    color: #3e891d;
+    margin: auto 0.25rem;
+    font-size: 1.2em;
+    text-decoration: underline;
+}
+
+span.single-page-btn:hover {
+    color: #3e891d;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/*---LIKE BUTTON---*/
+.like-button {
+    color: #DB355B;
+    border: none;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    font-size: 36px;
+    width: 50px;
+    height: 50px;
+}
+
+.like-button:focus {
+    color: #DB355B;
+    border: none;
+    box-shadow: none;
+}
+
+.like-button:hover {
+    color: #DB355B;
+    cursor: pointer;
+}
+
+.like-text {
+    color: black;
+    font-size: 1.2rem;
+}
+/*---END LIKE BUTTON---*/
+/*-------------END SINGLE BOG POST-------------
+----------------------------------------------------*/

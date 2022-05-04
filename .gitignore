@@ -1,0 +1,9 @@
+restifyback/venv/
+restifyback/.idea/
+restifyfront/node_modules/
+restifyfront/README.md
+restifyfront/restifyfront.code-workspace
+restifyfront/runwindows.ps1
+restifyfront/startupwindows.ps1
+restifyback/runwindows.ps1
+restifyback/startupwindows.ps1
