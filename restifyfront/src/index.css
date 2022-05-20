@@ -7,6 +7,7 @@ body {
     width: 100%;
     margin: 0;
     padding: 0;
+    background-color: rgb(220, 255, 215);
 }
 
 html { 
@@ -19,7 +20,6 @@ html {
 body {
     font-family: 'Assistant', sans-serif;
     color: black;
-    background-color: rgb(255, 255, 255);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -55,6 +55,10 @@ body {
 hr {
     padding: 0 auto;
     margin: 0 auto;
+}
+
+a {
+    color: #3c693c;
 }
 
 /*-------------END GENERAL-------------
