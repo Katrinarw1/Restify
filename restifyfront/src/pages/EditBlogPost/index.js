@@ -45,11 +45,11 @@ function EditBlogPost(props) {
         }
     }
     const validateImage = () => {
-        /*if (header_image == "") {
+        /* if (header_image == "") {
             return "Upload an image";
         } else {
             return "";
-        }*/
+        } */
         return "";
     }
 

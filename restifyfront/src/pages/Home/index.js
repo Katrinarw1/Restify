@@ -20,7 +20,7 @@ const Home = () => {
                 setTotalPages(Math.ceil(json.count / 10));
                 setResults(json.results);
             }).catch(console.error);
-            
+
         window.scrollTo({
             top: 0,
             behavior: 'smooth',

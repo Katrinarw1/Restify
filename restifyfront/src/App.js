@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes, useNavigate, Navigate, useHistory } from 
 
 import CurrentUser from './contexts/currentUser';
 
+import PageNotFound from './pages/PageNotFound';
+
 import Navbar from './components/navbar';
 
 import LoginPage from './pages/Login';
@@ -36,8 +38,14 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
+                <Route path='/404' element={<PageNotFound />} />
+                <Route path='*' element={<Navigate to='/404' />} />
+
                 <Route path="/login" element={<LoggedIn><LoginPage /></LoggedIn>} />
                 <Route path="/register" element={<LoggedIn><Register /></LoggedIn>} />
+
+                /* otherwise blank / brings up just the navbar */
+                <Route path='/' element={<Navigate to='/home' replace />} />
 
                 <Route path="/" element={<Navbar />}>
                     <Route path="home" element={<Home />} />
@@ -45,13 +53,22 @@ function App() {
 
                     <Route path="editProfile" element={<Auth><EditProfile /></Auth>} />
 
-                    <Route path=':idUsername/' element={<Auth><CurrentUser /></Auth>} >
-                        <Route path="blogPost/:idSlug" element={<Auth><SingleBlogPost /></Auth>} />
-                        <Route path="blogPost/:idSlug/edit" element={<Auth><EditBlogPost /></Auth>} />
-                        <Route path="blogpost/add" element={<Auth><EditBlogPost /></Auth>} />
+                    <Route path=':idUsername/' element={<Navigate to='./restaurant/general' replace />} />
 
+                    <Route path=':idUsername/' element={<Auth><CurrentUser /></Auth>} >
+                        <Route path='blogPost/'>
+                            <Route path='' element={<Navigate to='../../restaurant/blog' replace />} />
+                            <Route path=":idSlug" element={<Auth><SingleBlogPost /></Auth>} />
+                            <Route path=":idSlug/edit" element={<Auth><EditBlogPost /></Auth>} />
+                            <Route path="add" element={<Auth><EditBlogPost /></Auth>} />
+                        </Route>
+                        
                         <Route path='restaurant/' element={<Auth><Restaurant /></Auth>} >
                             <Route path='general' element={<Auth><General /></Auth>} />
+                            
+                            /* otherwise blank / brings up just the tabs */
+                            <Route path='' element={<Navigate to='./general' replace />} />
+                            
                             <Route path='menu' element={<Auth><Menu /></Auth>} />
                             <Route path='blog' element={<Auth><Blog /></Auth>} />
                             <Route path='comments' element={<Auth><Comments /></Auth>} />
@@ -60,7 +77,7 @@ function App() {
                             <Route path='general/editImages' element={<Auth><EditImages /></Auth>} />
 
                             <Route path='menu/:idMenu/edit' element={<Auth><EditMenu /></Auth>} />
-                            <Route path='menu/add' element={<Auth><EditMenu /></Auth>} />
+                            <Route path='menu/add' element={<Auth><EditMenu /></Auth>} />                            
                         </Route>
                     </Route>
                 </Route>

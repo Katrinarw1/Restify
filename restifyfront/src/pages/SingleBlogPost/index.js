@@ -1,4 +1,4 @@
-import { Link, useParams, useOutletContext } from "react-router-dom";
+import { Link, useParams, useOutletContext, Navigate } from "react-router-dom";
 import React, { useEffect, useRef, useState } from "react";
 
 
@@ -16,7 +16,7 @@ function Heart({ idSlug, liked, setLiked }) {
             }).catch(console.error);
         setLiked((PrevState) => PrevState);
     }
-    
+
     return (<>
         {liked == "true" ? <i className="fa fa-heart like-button" onClick={handleLike}></i> :
             <i className="fa fa-heart-o like-button" onClick={handleLike}></i>}
@@ -29,11 +29,27 @@ function SingleBlogPost() {
 
     const { idUsername } = useParams();
     const currUser = useOutletContext();
-    
+
     const isOwner = (currUser.username == idUsername);
     const { idSlug } = useParams();
     const [blogPost, setBlogPost] = useState({});
     const [liked, setLiked] = useState("false");
+
+    const [valid, setValid] = useState('ah');
+
+    useEffect(() => {
+        //check if idSlug is a blogpost that exists
+        fetch(`http://localhost:8000/restaurant/blogpost/${idSlug}/`, {
+            method: 'GET'
+        })
+            .then((res) => {
+                if (res.status == 404) {
+                    setValid(false);
+                } else {
+                    setValid(true);
+                }
+            }).catch(console.error);
+    }, [valid]);
 
 
     const getBlogPostInfo = () => {
@@ -72,40 +88,44 @@ function SingleBlogPost() {
     };
 
     return (
-        <main className="single-blog-post-container bg-white">
-            <div className="header-image p-0 m-0">
-                <img src={blogPost.header_image != null ? blogPost.header_image : "/images/default1.jpg"}
-                    className="img-fluid w-100 p-0 m-0" />
+        <>{valid != 'ah' ?
+            <>{valid == true ?
+                <main className="single-blog-post-container bg-white">
+                    <div className="header-image p-0 m-0">
+                        <img src={blogPost.header_image != null ? blogPost.header_image : "/images/default1.jpg"}
+                            className="img-fluid w-100 p-0 m-0" />
 
-                <div className="header-text justify-content-center">
-                    <div className="title text-start m-0 p-0">{blogPost.title}</div>
-                    <div className="sub-title text-start m-0 p-0">{blogPost.small_title}</div>
-                    <div className="info text-start my-4">
-                        Posted by {blogPost.restaurant_owner} on {blogPost.date}
+                        <div className="header-text justify-content-center">
+                            <div className="title text-start m-0 p-0">{blogPost.title}</div>
+                            <div className="sub-title text-start m-0 p-0">{blogPost.small_title}</div>
+                            <div className="info text-start my-4">
+                                Posted by {blogPost.restaurant_owner} on {blogPost.date}
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <article className="single-blog-post py-3">
-                {isOwner ?
-                    <Link className="page-edit-link edit-link" to={`./edit`}>
-                        <i className="bi bi-pencil-square"></i> Edit
-                    </Link>
-                    : <></>
-                }
-                <div className="mb-4">
-                    <Heart idSlug={idSlug} liked={liked} setLiked={setLiked} />{blogPost.num_likes}
-                </div>
-                <div dangerouslySetInnerHTML={{ __html: blogPost.content }} className="single-blog-post-content" />
-            </article>
+                    <article className="single-blog-post py-3">
+                        {isOwner ?
+                            <Link className="page-edit-link edit-link" to={`./edit`}>
+                                <i className="bi bi-pencil-square"></i> Edit
+                            </Link>
+                            : <></>
+                        }
+                        <div className="mb-4">
+                            <Heart idSlug={idSlug} liked={liked} setLiked={setLiked} />{blogPost.num_likes}
+                        </div>
+                        <div dangerouslySetInnerHTML={{ __html: blogPost.content }} className="single-blog-post-content" />
+                    </article>
 
-            <div className="row my-3 blog-pagination pagination-number">
-                <div className="col-12 text-center justify-content-center py-3">
-                    <span className="single-page-btn" onClick={scrollToTop}>Top of page</span>
-                </div>
-            </div>
-        </main >
-    )
+                    <div className="row my-3 blog-pagination pagination-number">
+                        <div className="col-12 text-center justify-content-center py-3">
+                            <span className="single-page-btn" onClick={scrollToTop}>Top of page</span>
+                        </div>
+                    </div>
+                </main >
+                : <Navigate to='/404' replace />}</>
+
+            : <></>}</>)
 }
 
 export default SingleBlogPost;

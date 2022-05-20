@@ -70,104 +70,103 @@ function Navbar() {
             <ul className="navbar-nav mb-2 mb-md-0 collapse navbar-collapse justify-content-end" id="navbarCollapse">
                 <li className="nav-item px-2"><Link to="/home" className="nav-link">Home</Link></li>
 
-                <li className="nav-item px-2"><Link to="/feed" className="nav-link">Feed</Link></li>
+                {currUser.username == undefined ?
+                    <>
+                        <li className="nav-item px-2"><Link to="/login" className="nav-link" onClick={handleLogout}>Login</Link></li>
+                        <li className="nav-item px-2 me-5"><Link to="/register" className="nav-link" onClick={handleLogout}>Sign up</Link></li>
+                    </> :
+                    <>
+                        <li className="nav-item px-2"><Link to="/feed" className="nav-link">Feed</Link></li>
 
-                <li className="nav-item px-2 dropdown">
-                    <Link to="#" className="nav-link dropdown-toggle" id="navbarDropdownNotifications" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false" onClick={getNotifications}>Notifications
-                    </Link>
-                    <div className="notifications dropdown-menu mb-0 pb-0" id="box">
-                        {currUser.username == undefined ?
-                            <div className="d-flex align-items-center justify-content-center my-3 pb-2">
-                                <Link to="/login" className="text-white">Login to see notifications</Link>
-                            </div> : <div>
-                                <div className="ps-3 my-1 title">Notifications - <span>{notificationCount}</span></div>
-                                <hr className="col-12" />
 
-                                {notifications.map(notif => (
-                                    <div key={notif.id} className="row justify-content-center g-0">
-                                        <Link to={`/${notif.sender}/restaurant/general`} className="">
-                                            <div className="notifications-item row g-0 my-1">
-                                                <div className="notification-image-wrapper col-3 my-1">
-                                                    <img src={`http://localhost:8000${notif.sender_image}`}
-                                                        className="rounded-circle" alt="avatar or logo" />
-                                                </div>
-                                                <div className="text col-9">
-                                                    <div className="row">
-                                                        <span className="user col">{notif.sender_name} </span>
-                                                        <span className="date text-end col-4 me-2">{notif.date}</span>
+                        <li className="nav-item px-2 dropdown">
+                            <Link to="#" className="nav-link dropdown-toggle" id="navbarDropdownNotifications" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false" onClick={getNotifications}>Notifications
+                            </Link>
+
+                            <div className="notifications dropdown-menu mb-0 pb-0" id="box">
+                                <div>
+                                    <div className="ps-3 my-1 title">Notifications - <span>{notificationCount}</span></div>
+                                    <hr className="col-12" />
+
+                                    {notifications.map(notif => (
+                                        <div key={notif.id} className="row justify-content-center g-0">
+                                            <Link to={`/${notif.sender}/restaurant/general`} className="">
+                                                <div className="notifications-item row g-0 my-1">
+                                                    <div className="notification-image-wrapper col-3 my-1">
+                                                        <img src={`http://localhost:8000${notif.sender_image}`}
+                                                            className="rounded-circle" alt="avatar or logo" />
                                                     </div>
-                                                    <div className="message col-12">{notif.get_message_display}</div>
+                                                    <div className="text col-9">
+                                                        <div className="row">
+                                                            <span className="user col">{notif.sender_name} </span>
+                                                            <span className="date text-end col-4 me-2">{notif.date}</span>
+                                                        </div>
+                                                        <div className="message col-12">{notif.get_message_display}</div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </Link>
-                                        <hr className="col-11" />
-                                    </div>
-                                ))}
-                            </div>}
+                                            </Link>
+                                            <hr className="col-11" />
+                                        </div>
+                                    ))}
+                                </div>
 
-                        <div className="col-12 m-0 p-0">
-                            {page > 1 ?
-                                <button className="btn btn-primary nav-btn py-0 col-6 float-start" onClick={() => setPage(page - 1)}>
-                                    prev
-                                </button> : <div className="col-6"></div>}
-                            {page < totalPages ?
-                                <button className="btn btn-primary py-0 nav-btn col-6 float-end" onClick={() => setPage(page + 1)}>
-                                    next
-                                </button> : <div className="col-6"></div>}
-                        </div>
-                    </div>
-                </li>
-
-                <li className="nav-item px-2 dropdown">
-                    <Link to="#" className="nav-link dropdown-toggle" id="navbarDropdownMyRestaurant" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">My Restaurant
-                    </Link>
-                    <div className="dropdown-menu" onClick={getProfile} aria-labelledby="navbarDropdownMyRestaurant">
-                        {currUser.username == undefined ?
-                            <div className="text-decoration-none d-flex align-items-center justify-content-center mx-4 my-4">
-                                <Link to="/login" className="text-white text-decoration-none justify-content-center text-center">
-                                    Login to view your restaurant
-                                </Link>
+                                <div className="col-12 m-0 p-0">
+                                    {page > 1 ?
+                                        <button className="btn btn-primary nav-btn py-0 col-6 float-start" onClick={() => setPage(page - 1)}>
+                                            prev
+                                        </button> : <div className="col-6"></div>}
+                                    {page < totalPages ?
+                                        <button className="btn btn-primary py-0 nav-btn col-6 float-end" onClick={() => setPage(page + 1)}>
+                                            next
+                                        </button> : <div className="col-6"></div>}
+                                </div>
                             </div>
-                            : <div className="row g-0 justify-content-center text-center">
-                                <Link to={`/${currUser.username}/restaurant/general`} className="dropdown-item">General</Link>
-                                <hr className="col-11" />
-                                <Link to={`/${currUser.username}/restaurant/menu`} className="dropdown-item">Menu</Link>
-                                <hr className="col-11" />
-                                <Link to={`/${currUser.username}/restaurant/blog`} className="dropdown-item">Blogposts</Link>
-                                <hr className="col-11" />
-                                <Link to={`/${currUser.username}/restaurant/comments`} className="dropdown-item">Comments</Link>
-                            </div>}
-                    </div>
-                </li>
+                        </li>
 
-                <li className="nav-item px-2 me-5 dropdown">
-                    <Link to="#" className="nav-link dropdown-toggle" id="navbarDropdownAccount" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false" onClick={getProfile}> Account
-                    </Link>
-                    <div className="dropdown-menu dropdown-menu-end profile-menu text-center" aria-labelledby="navbarDropdownAccount">
-                        {currUser.username == undefined ?
-                            <div className="row my-2 text-white mx-5 justify-content-center">
-                                <Link to="/login" className="m-0 p-0 not-logged-in col-4">Login</Link>
-                                <span className="col m-0 p-0 ">&nbsp;or&nbsp;</span>
-                                <Link to="/register" className="not-logged-in col-4 m-0 p-0 ">Sign up</Link>
+
+
+                        <li className="nav-item px-2 dropdown">
+                            <Link to="#" className="nav-link dropdown-toggle" id="navbarDropdownMyRestaurant" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">My Restaurant
+                            </Link>
+                            <div className="dropdown-menu" onClick={getProfile} aria-labelledby="navbarDropdownMyRestaurant">
+
+                                <div className="row g-0 justify-content-center text-center">
+                                    <Link to={`/${currUser.username}/restaurant/general`} className="dropdown-item">General</Link>
+                                    <hr className="col-11" />
+                                    <Link to={`/${currUser.username}/restaurant/menu`} className="dropdown-item">Menu</Link>
+                                    <hr className="col-11" />
+                                    <Link to={`/${currUser.username}/restaurant/blog`} className="dropdown-item">Blogposts</Link>
+                                    <hr className="col-11" />
+                                    <Link to={`/${currUser.username}/restaurant/comments`} className="dropdown-item">Comments</Link>
+                                </div>
                             </div>
-                            : <div className="row g-0 justify-content-center">
-                                <img src={`${currUser.avatar}`} className="col-12 avatar rounded-circle img-fluid py-3" alt="avatar" />
-                                <div className="col-12 mb-2 fw-bold">{currUser.first_name} {currUser.last_name}</div>
-                                <div className="col-12 mb-1">{currUser.email}</div>
-                                <div className="col-12 mb-2">{currUser.phone_number}</div>
+                        </li>
 
-                                <hr className="col-11" />
-                                <Link to="/editProfile" className="col-12 dropdown-item edit-link">
-                                    <i className="bi bi-pencil-square"></i>Edit Profile
-                                </Link>
-                                <hr className="col-11" />
-                                <Link to="/login" className="col-12 dropdown-item" onClick={handleLogout}>Logout</Link>
-                            </div>}
-                    </div>
-                </li>
+
+                        <li className="nav-item px-2 me-5 dropdown">
+                            <Link to="#" className="nav-link dropdown-toggle" id="navbarDropdownAccount" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false" onClick={getProfile}> Account
+                            </Link>
+                            <div className="dropdown-menu dropdown-menu-end profile-menu text-center" aria-labelledby="navbarDropdownAccount">
+                                <div className="row g-0 justify-content-center">
+                                    <img src={`${currUser.avatar}`} className="col-12 avatar rounded-circle img-fluid py-3" alt="avatar" />
+                                    <div className="col-12 mb-2 fw-bold">{currUser.first_name} {currUser.last_name}</div>
+                                    <div className="col-12 mb-1">{currUser.email}</div>
+                                    <div className="col-12 mb-2">{currUser.phone_number}</div>
+
+                                    <hr className="col-11" />
+                                    <Link to="/editProfile" className="col-12 dropdown-item edit-link">
+                                        <i className="bi bi-pencil-square"></i>Edit Profile
+                                    </Link>
+                                    <hr className="col-11" />
+                                    <Link to="/login" className="col-12 dropdown-item" onClick={handleLogout}>Logout</Link>
+                                </div>
+                            </div>
+                        </li>
+                    </>
+                }
             </ul>
         </nav>
 

@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import FieldArray from "./fieldArray";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams, useNavigate, useLocation, Navigate } from "react-router-dom";
 
 /* Nested Form from https://codesandbox.io/embed/react-hook-form-usefieldarray-nested-arrays-x7btr with modifications */
 
@@ -15,7 +15,23 @@ export default function EditMenu(props) {
     const [defaultValues, setDefaultValues] = useState({});
 
     const location = useLocation();
-    const [isEdit] = useState(location.pathname.includes('/edit'))
+    const [isEdit] = useState(location.pathname.includes('/edit'));
+
+    const [valid, setValid] = useState('ah');
+
+    useEffect(() => {
+        //check if idMenu is a menu that exists
+        fetch(`http://localhost:8000/restaurant/menu/${idMenu}/`, {
+            method: 'GET'
+        })
+            .then((res) => {
+                if (res.status == 404) {
+                    setValid(false);
+                } else {
+                    setValid(true);
+                }
+            }).catch(console.error);
+    }, [valid]);
 
     useEffect(() => {
         if (isEdit) {
@@ -124,39 +140,43 @@ export default function EditMenu(props) {
     };
 
     return (
-        <main className="edit-container p-3">
-            <form onSubmit={handleSubmit(onSubmit)} className="edit-form row m-4 py-4 px-3" >
-                <div className="row mb-2">
-                    <div className="col">
-                        <h2>MENU INFO</h2>
-                    </div>
-                </div>
+    // don't want to load the page if this isn't a valid menu
+        <>{valid != 'ah' ?
+            <>{valid == true ?
+                <main className="edit-container p-3">
+                    <form onSubmit={handleSubmit(onSubmit)} className="edit-form row m-4 py-4 px-3" >
+                        <div className="row mb-2">
+                            <div className="col">
+                                <h2>MENU INFO</h2>
+                            </div>
+                        </div>
 
-                <div className="row mb-5">
-                    <label htmlFor="inputMenuName" className="col-2 input-label col-form-label">Menu name:</label>
-                    <div className="col-6">
-                        <input {...register(`name`, { required: true })} defaultValue={defaultValues.name}
-                            className="form-control" />
-                    </div>
-                </div>
-                <FieldArray {...{ control, register, defaultValues, getValues, setValue, errors }} />
+                        <div className="row mb-5">
+                            <label htmlFor="inputMenuName" className="col-2 input-label col-form-label">Menu name:</label>
+                            <div className="col-6">
+                                <input {...register(`name`, { required: true })} defaultValue={defaultValues.name}
+                                    className="form-control" />
+                            </div>
+                        </div>
+                        <FieldArray {...{ control, register, defaultValues, getValues, setValue, errors }} />
 
-                <div className="row justify-content-md-center">
-                    <div className="col-5 my-3">
-                        <button type="submit" className="btn btn-success submit-button w-100">Save changes</button>
-                        <div className="error-message text-center">{errorMessageSubmit}</div>
-                    </div>
-                </div>
-            </form>
+                        <div className="row justify-content-md-center">
+                            <div className="col-5 my-3">
+                                <button type="submit" className="btn btn-success submit-button w-100">Save changes</button>
+                                <div className="error-message text-center">{errorMessageSubmit}</div>
+                            </div>
+                        </div>
+                    </form>
 
-            {isEdit ?
-                <div className="row justify-content-md-center">
-                    <div className="col-3 my-3">
-                        <button type="submit" className="btn btn-danger submit-button w-100"
-                            onClick={handleDelete}>Delete menu</button>
-                    </div>
-                </div> : <></>}
-        </main>
-    );
+                    {isEdit ?
+                        <div className="row justify-content-md-center">
+                            <div className="col-3 my-3">
+                                <button type="submit" className="btn btn-danger submit-button w-100"
+                                    onClick={handleDelete}>Delete menu</button>
+                            </div>
+                        </div> : <></>}
+                </main>
+                : <Navigate to='/404' replace />}</>
+            : <></>}</>);
 }
 
