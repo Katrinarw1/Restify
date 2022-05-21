@@ -55,23 +55,23 @@ function App() {
 
                     <Route path=':idUsername/' element={<Navigate to='./restaurant/general' replace />} />
 
-                    <Route path=':idUsername/' element={<Auth><CurrentUser /></Auth>} >
+                    <Route path=':idUsername/' element={<CurrentUser />} >
                         <Route path='blogPost/'>
                             <Route path='' element={<Navigate to='../../restaurant/blog' replace />} />
-                            <Route path=":idSlug" element={<Auth><SingleBlogPost /></Auth>} />
+                            <Route path=":idSlug" element={<SingleBlogPost />} />
                             <Route path=":idSlug/edit" element={<Auth><EditBlogPost /></Auth>} />
                             <Route path="add" element={<Auth><EditBlogPost /></Auth>} />
                         </Route>
                         
-                        <Route path='restaurant/' element={<Auth><Restaurant /></Auth>} >
-                            <Route path='general' element={<Auth><General /></Auth>} />
+                        <Route path='restaurant/' element={<Restaurant />} >
+                            <Route path='general' element={<General />} />
                             
                             /* otherwise blank / brings up just the tabs */
                             <Route path='' element={<Navigate to='./general' replace />} />
                             
-                            <Route path='menu' element={<Auth><Menu /></Auth>} />
-                            <Route path='blog' element={<Auth><Blog /></Auth>} />
-                            <Route path='comments' element={<Auth><Comments /></Auth>} />
+                            <Route path='menu' element={<Menu />} />
+                            <Route path='blog' element={<Blog />} />
+                            <Route path='comments' element={<Comments />} />
 
                             <Route path='general/edit' element={<Auth><EditHome /></Auth>} />
                             <Route path='general/editImages' element={<Auth><EditImages /></Auth>} />

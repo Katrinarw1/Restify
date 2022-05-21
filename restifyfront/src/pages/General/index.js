@@ -61,10 +61,7 @@ function General() {
     useEffect(() => {
         //get restaurant images
         fetch(`http://localhost:8000/${idUsername}/restaurant/images/`, {
-            method: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + `${localStorage.getItem('token')}`
-            }
+            method: 'GET'
         })
             .then((res) => res.json())
             .then((json) => {
@@ -75,10 +72,7 @@ function General() {
     const getRestaurantInfo = () => {
         //get restaurant info
         fetch(`http://localhost:8000/${idUsername}/restaurant/`, {
-            method: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + `${localStorage.getItem('token')}`
-            }
+            method: 'GET'
         })
             .then((res) => res.json())
             .then((json) => {
@@ -172,7 +166,8 @@ function General() {
                         <div className="col-12 text-center restaurant-logo">
                             <img src={restaurant.logo} className="rounded-circle" />
                         </div>
-
+                        
+                        {currUser == {} ? <>
                         <div className="row like-follow-buttons g-0 m-0 pt-2 ps-2 pe-0 pb-0 text-center">
                             <div className="col-5 general-like-button-container text-end">
                                 <Heart idUsername={idUsername} liked={liked} setLiked={setLiked} /><span className="general-like-text"> Like</span>
@@ -181,7 +176,7 @@ function General() {
                             <div className="col-5 follow-button-container text-start">
                                 <Person idUsername={idUsername} followed={followed} setFollowed={setFollowed} /><span className="follow-text"> Follow</span>
                             </div>
-                        </div>
+                        </div> </> : <div className="my-3"></div>}
 
                         <div className="col-12 text-center pb-2">{restaurant.email}</div>
                         <div className="col-12 text-center pb-2">{restaurant.phone_number}</div>

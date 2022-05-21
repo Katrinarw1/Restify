@@ -54,10 +54,7 @@ function SingleBlogPost() {
 
     const getBlogPostInfo = () => {
         fetch(`http://localhost:8000/restaurant/blogpost/${idSlug}/`, {
-            method: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + `${localStorage.getItem('token')}`
-            }
+            method: 'GET'
         })
             .then((res) => res.json())
             .then((json) => {
@@ -111,9 +108,10 @@ function SingleBlogPost() {
                             </Link>
                             : <></>
                         }
+                        {currUser == {} ? <>
                         <div className="mb-4">
                             <Heart idSlug={idSlug} liked={liked} setLiked={setLiked} />{blogPost.num_likes}
-                        </div>
+                        </div> </> : <div className="my-4"></div>}
                         <div dangerouslySetInnerHTML={{ __html: blogPost.content }} className="single-blog-post-content" />
                     </article>
 

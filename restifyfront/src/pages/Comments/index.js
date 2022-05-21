@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
+import CurrentUser from "../../contexts/currentUser";
 
 
 function Comments() {
@@ -14,10 +15,7 @@ function Comments() {
 
     useEffect(() => {
         fetch(`http://localhost:8000/${idUsername}/restaurant/comments/?page=${page}`, {
-            method: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + `${localStorage.getItem('token')}`
-            }
+            method: 'GET'
         })
             .then((res) => res.json())
             .then((json) => {
@@ -60,7 +58,8 @@ function Comments() {
                     <div className="col-12 text-center title">COMMENTS</div>
 
                     <hr className="my-3 col-12 comment-divider" />
-
+                    
+                    {CurrentUser == {} ? <>
                     <form onSubmit={postComment} className="row comment-form">
                         <div className="col-12 justify-content-md-center">
                             <textarea id="post-comment" name="post-comment" className="col-8" rows="2"
@@ -70,9 +69,9 @@ function Comments() {
                         <div className="col-12 justify-content-md-center">
                             <button type="submit" className="btn btn-success submit-button col-8">Post Comment</button>
                         </div>
-                    </form>
+                    </form> 
 
-                    <hr className="my-3 col-12 comment-divider" />
+                    <hr className="my-3 col-12 comment-divider" /> </> : <></>}
 
                     {results.map(comment => (<div key={comment.id}>
                         <div className="comment row">

@@ -15,10 +15,7 @@ function Menu() {
 
     useEffect(() => {
         fetch(`http://localhost:8000/${idUsername}/restaurant/menu/?page=${page}`, {
-            method: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + `${localStorage.getItem('token')}`
-            }
+            method: 'GET'
         })
             .then((res) => res.json())
             .then((json) => {

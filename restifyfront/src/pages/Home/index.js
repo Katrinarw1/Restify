@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 
 const Home = () => {
     document.title = "Restify | Home";
-
+    
     const [search, setSearch] = useState("");
     const [page, setPage] = useState(1);
+    const [click, setClick] = useState(false);
     const [radio, setRadio] = useState("name");
     const [totalPages, setTotalPages] = useState(0);
     const [results, setResults] = useState([]);
@@ -25,15 +26,17 @@ const Home = () => {
             top: 0,
             behavior: 'smooth',
         });
-    }, [page]);
+        
+        setClick(false);
+    }, [page, click]);
 
     return (
         <div className="search-page-container">
             <div className="search-form">
                 <div className="row justify-content-center">
                     <input className="col-4 me-2" type="search" placeholder="Search" aria-label="Search" value={search}
-                        onChange={(e) => setSearch(e.target.value)} />
-                    <button className="btn btn-success btn-large col-1" type="submit" onClick={() => setPage(1)}>Search</button>
+                        onChange={(e) => {setSearch(e.target.value);}} />
+                    <button className="btn btn-success btn-large col-1" type="submit" onClick={() => {setPage(1); setClick(true);}}>Search</button>
                 </div>
                 <div className="search-by-container row justify-content-center">
                     <div className="col-4 me-2 text-center">
